@@ -12,4 +12,4 @@ Pretty simple really, just install the extension, then in the options for the ex
 
 It's basically just a glorified shell-script, I will save you time by pasting it here:
 
-`curl -s --user [username:password] --data-urlencode "url={query}" https://www.instapaper.com/api/add`
+`curl -s --user username:password --data-urlencode "url={query}" https://www.instapaper.com/api/add`
