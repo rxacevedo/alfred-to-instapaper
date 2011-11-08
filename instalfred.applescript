@@ -1,12 +1,24 @@
-tell application "Google Chrome"
-	get URL of active tab of window 1
+tell application "System Events"
+	set safariCount to count (every process whose name is "Safari")
+	set chromeCount to count (every process whose name is "Google Chrome")
 end tell
+	
+if safariCount > 0 then
+	tell application "Safari"
+		get URL of front document
+	end tell
+
+else if chromeCount > 0 then
+		tell application "Google Chrome"
+			get URL of active tab of window 1
+		end tell
+end if
 
 set input to result
 set statuscode to do shell script "curl -s --user username:password --data-urlencode url=" & input & " https://www.instapaper.com/api/add"
 
-tell application "GrowlHelperApp"
-	set the allNotificationsList to ¬
+tell application "Growl"
+	set the allNotificationsList to ¬	
 		{"Success", "Authentication Error", "Other Error"}
 	
 	set the enabledNotificationsList to ¬
@@ -15,7 +27,7 @@ tell application "GrowlHelperApp"
 	register as application ¬
 		"Instapaper" all notifications allNotificationsList ¬
 		default notifications enabledNotificationsList ¬
-		icon of application "Script Editor"
+		icon of application "Alfred"
 	
 	if statuscode = "201" then
 		notify with name ¬
