@@ -1,18 +1,26 @@
 tell application "System Events"
-	set safariCount to count (every process whose name is "Safari")
-	set chromeCount to count (every process whose name is "Google Chrome")
+	set front_app to name of first application process whose frontmost is true
 end tell
 
-if safariCount > 0 then
-	tell application "Safari"
-		get URL of front document
-	end tell
-	
-else if chromeCount > 0 then
-	tell application "Google Chrome"
-		get URL of active tab of first window
-	end tell
-end if
+tell application "System Events"
+	if front_app = "Safari" then
+		tell application "Safari"
+			get URL of front document
+		end tell
+		
+	else if front_app = "Google Chrome" then
+		tell application "Google Chrome"
+			get URL of active tab of first window
+		end tell
+	else
+		tell application "Growl"
+			notify with name Â
+				"Other Error" title Â
+				"Instapaper " description Â
+				"I'm not sure what you want me to doÉ" application name "Instapaper"
+		end tell
+	end if
+end tell
 
 set input to result
 set statuscode to do shell script "curl -s --user USERNAME:PASSWORD --data-urlencode url=" & input & " https://www.instapaper.com/api/add"
