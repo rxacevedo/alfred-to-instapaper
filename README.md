@@ -1,15 +1,9 @@
 ##Alfred to Instapaper
 
-Just a simple Alfred extension that allows you to pass URLs to Instapaper. Uses HTTP Basic Auth and cURL.
+A simple AppleScript that allows you to pass URLs to Instapaper, packaged as an AppleScript for your convenience. Uses HTTP Basic Auth and cURL.
 
 ---
 ###Usage
 
-Pretty simple really, just install the extension, then in the options for the extension, replace "username:password" with your Instapaper credentials.
-
+Install the extension by double clicking it, then substitute in your username/password for USERNAME:PASSWORD. Activate the extension by typing 'insta' in Alfred.
 ---
-###Command
-
-It's basically just a glorified shell-script, I will save you time by pasting it here:
-
-`curl -s --user username:password --data-urlencode "url={query}" https://www.instapaper.com/api/add`

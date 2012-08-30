@@ -2,15 +2,10 @@ tell application "System Events"
 	set front_app to name of first application process whose frontmost is true
 end tell
 
-tell application "System Events"
+tell application "System Events"	
 	if front_app = "Safari" then
 		tell application "Safari"
 			get URL of front document
-		end tell
-		
-	else if front_app = "Google Chrome" then
-		tell application "Google Chrome"
-			get URL of active tab of first window
 		end tell
 	else
 		tell application "Growl"
